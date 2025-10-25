@@ -1,0 +1,215 @@
+
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scroll-padding-top: 8.5rem;
+    
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    background-color: #fff;
+    color: var(--clr-secundary);
+    font-family: var(--ff-secondary);
+}
+img{
+    width: 500px;
+}
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--clr-secundary);
+}
+i {
+    font-size: 4rem;
+    color: var(--clr-primary);
+}
+h2 {
+    font-size: 2.5rem;
+}
+.container{
+    display: flex;
+    justify-content: space-between; /* espacio uniforme */
+    align-items: center;            /* alineación vertical */
+    gap: 20px;                      /* separación entre columnas */
+    min-height: 100vh;              /* ocupa toda la pantalla */
+}
+.left-side{
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url(/static/imagenes/breno-assis-r3WAWU5Fi5Q-unsplash\ 1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1050px;
+    height: 100vh;
+    position: relative;
+}
+.left-side h1 {
+    font-family: var(--ff-primary);
+    font-size: 4.5rem;
+    color: #FF5E6E;
+    width: 600px;
+    line-height: 5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+.left-side h1 span{
+    color: #fff;
+}
+.right-side{
+    flex: 1; 
+    flex: 0 0 40%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 150px;
+    gap: 2.5rem;
+    font-size: 1.25rem;
+}
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    color: #6b6b6b;
+}
+.right-side h2{
+    font-size: 2.25rem;
+    color: #FF5E6E;
+    font-family: var();
+    font-weight: bolder;
+}
+.botones{
+    display: flex;
+    color: var(--clr-secundary);
+    flex-direction: column;
+    gap: 1rem;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-weight: 700;
+    padding: 2rem;
+    gap: 1rem;
+    width: 100%;
+    padding: 32px;
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+}
+
+#btn-descarga-demo:hover{
+    border-color: #FF5E6E;
+}
+#btn-volver-index:hover{
+    border-color: var(--clr-primary2);
+}
+.iniciar-sesion{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: .5rem;
+}
+.iniciar-sesion a{
+    color: #FF5E6E;
+    text-decoration: underline;
+    transition: var(--transition);
+}
+.iniciar-sesion a:hover{
+    color: var(--clr-primary2);
+}
+
+.lang-container{
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  
+}
+.language{
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+.language i{
+    color: #fff;
+    font-size: 1.5rem;
+}
+.language:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.idiomas{
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0rem;
+    background-color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    position: absolute;
+    min-width: 300px;
+    font-size: 1rem;
+    justify-content: center;
+    transition: var(--transition);
+    overflow: hidden;
+}
+.idiomas li{
+    width: 100%;
+    padding: 1rem;
+    border-radius: rem;
+}
+.idiomas a{
+    color: #999;
+    width: 100%;
+
+}
+
+.idiomas li:hover{
+    border: 1px solid #e5e5e5;
+    background-color: #757575;
+    cursor: pointer;
+}
+.idiomas li:hover a{
+    color: #fff;
+}
+.idiomas i {
+  transition: transform 0.3s ease;
+}
+.presionado{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.hidden{
+    display: none;
+    visibility: hidden;
+    z-index: -10;
+}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}<title data-translate="register">Register</title>{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login-register-style.css')}}">
+{% endblock%}
+{% block body %} 
+    <body id="register-page">
+        <main>
+            <aside class="left-side">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="flash-messages">
+                            {% for message in messages %}
+                                <div class="flash-message">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-header">
+                    <h1 data-translate="gestion">Gestión de <span> Barrio Privado</span></h1>
+                    <p class="sub-parrafo" data-translate="sub_parrafo_register">Registrate para poder acceder a los servicios de tu barrio. Te tomará solo unos minutos. 
+                        Completá los datos y hacé click en <span>"Registrarse"</span></p>
+                </div>
+                <form id="contact_form" class="contact" method="post" action="" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="form-group form-email">
+                        {{ form.email.label(class="form-label", **{'data-translate': 'email'}) }}
+                        {{ form.email(id="email", class="form-control", placeholder="arielserranocerbellera@gmail.com", size=105) }}
+                        {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="email" data-translate="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="arielserranocerbellera@gmail.com" required> --> 
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label(class="form-label", **{'data-translate': 'pass'}) }}
+                        {{ form.password(id="password", class="form-control", placeholder="contraseña", size=105) }}
+                        {% for error in form.password.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="pass" data-translate="pass">Contraseña</label>
+                        <input type="password" id="pass" name="password" class="form-control" placeholder="contraseña" required > -->
+                    </div>
+                    <div class="form-group">
+                        {{ form.conf_pass.label(class="form-label", **{'data-translate':"pass_conf"}) }}
+                        {{ form.conf_pass(id="conf_pass", class="form-control", placeholder="confirmación contraseña", size=105) }}
+                        {% for error in form.conf_pass.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="conf-pass" data-translate="pass_conf">Confirmación Contraseña</label>
+                        <input type="password" id="conf-pass" name="conf-pass" class="form-control" placeholder="confirmación contraseña" required> -->
+                    </div>
+                    <div class="form-group">
+                        {{ form.name.label(class="form-label", **{'data-translate':"nombres"}) }}
+                        {{ form.name(id="name", class="form-control", placeholder="Ingrese nombres", size=105) }}
+                        {% for error in form.name.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="name" data-translate="nombres">Nombres</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Ingrese nombres" required> -->
+                    </div>
+                    <div class="form-group">
+                        {{ form.last_name.label(class="form-label", **{'data-translate':"apellidos"}) }}
+                        {{ form.last_name(id="last_name", class="form-control", placeholder="Ingrese apellidos", size=105) }}
+                        {% for error in form.last_name.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="last-name" data-translate="apellidos">Apellidos</label>
+                        <input type="text" id="last-name" name="last-name" class="form-control" placeholder="Ingrese apellidos" required> -->
+                    </div>
+                    <button type="submit" class="send-btn" id="send-btn" data-translate="register_btn">
+                        {{ ('Registrarse') }}
+                    </button>
+                    <!-- <button type="submit" id="send-btn" class="send-btn" data-translate="register">Registrarse</button>  --> 
+                </form>
+                <p data-translate="already_account">Ya tenés una cuenta. <a href="{{url_for('login')}}" class="iniciar-sesion">Inicia sesion ahora!</a></p>
+            </aside>
+            <div class="right-side">
+                <img src="{{url_for('static',filename='imagenes/undraw_access-account_aydp 1.svg')}}" alt="">
+            </div>
+        </main>
+        <div class="lang-container">
+            <div class="lang">
+                <button type="button" class="language" id="lang-toggle">
+                    <i class='bx  bx-globe-alt'></i>
+                    <span class="text-language">Español</span>
+                    <i id="flecha-idioma" class='bx  bx-chevron-up'></i>
+                </button >
+            </div>
+            <ul class="idiomas hidden">
+                <li class="es" id="es"><a>Español</a></li>
+                <li class="en" id="en"><a>English</a></li>
+            </ul>
+        </div>
+        <script src="{{url_for('static',filename='js/login-register.js')}}"></script>
+        <script src="{{url_for('static',filename='js/translate.js')}}"></script>
+    </body>
+{% endblock%}
+</html>

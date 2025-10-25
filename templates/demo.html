@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}<title data-translate="free_demo">Demo Gratuita</title>{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/demo-style.css')}}">
+{% endblock%}
+{% block body %} 
+    <body id="demo_page">
+        <div class="container">
+            <div class="left-side">
+                <h1 data-translate="unique_platform">Gestioná tu barrio <span>en una sola plataforma.</span></h1>
+                <div class="lang-container">
+                    <div class="lang">
+                        <button type="button" class="language" id="lang-toggle">
+                            <i class='bx  bx-globe-alt'></i>
+                            <span class="text-language">Español</span>
+                            <i id="flecha-idioma" class='bx  bx-chevron-up'></i>
+                        </button >
+                    </div>
+                    <ul class="idiomas hidden">
+                        <li class="es" id="es"><a>Español</a></li>
+                        <li class="en" id="en"><a>English</a></li>
+                    </ul>
+                </div>
+            </div>
+        <aside class="right-side">
+            <div class="text">
+                <h2 data-translate="free_download">Descargá la demo Gratis.</h2>
+                <p data-translate="free_access">Proba acceso completo y sin costo.</p>
+            </div>
+            <div class="botones">
+                <div id="btn-descarga-demo"class="btn">
+                    <i class='bxr  bx-folder-up-arrow'></i> 
+                    <a href="" data-translate="want_free_try">Quiero probar la Demo de manera gratuita</a>
+                </div>
+                <div id="btn-volver-index"class="btn">
+                    <i class='bxr  bx-arrow-from-top-stroke'></i> 
+                    <a href="{{url_for('index')}}" data-translate="want_product">Quiero saber más sobre el producto completo</a>
+                </div>
+            </div>
+            <p class="iniciar-sesion" data-translate="already_account">¿Ya tienes una cuenta? <a href="{{url_for('login')}}">Iniciar Sesión</a></p>
+            
+            
+        </aside>
+        </div>
+        <script src="{{url_for('static',filename='js/translate.js')}}"></script>
+    </body>
+{% endblock%}

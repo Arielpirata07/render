@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}<title data-translate="log_in">Login</title>{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login-register-style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login-style.css')}}">
+{% endblock%}
+{% block body %} 
+    <body id="login-page">
+        <main>
+            
+            <aside class="left-side">
+                {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="flash-messages">
+                                {% for message in messages %}
+                                    <div class="flash-message">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                <div class="form-header">
+                    <h1 data-translate="gestion">Gestión de <span>Barrio Privado</span></h1>
+                    <h2 class="iniciar-sesion-title" data-translate="log_in">Iniciar-sesion</h2>
+                    <p class="sub-parrafo" data-translate="sub_parrafo_login">Si ya estás registrado ingresá tu email y contraseña para acceder.</p>
+                </div>
+                <form id="contact_form" class="contact" action="/login" method="POST">
+                    
+                    {{ form.hidden_tag() }}
+                    <div class="form-group form-email">
+                        {{ form.email.label(class="form-label", **{'data-translate': 'email'}) }}
+                        {{ form.email(id="email", class="form-control", placeholder="arielserranocerbellera@gmail.com", size=105) }}
+                        {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="email" data-translate="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="arielserranocerbellera@gmail.com" required> --> 
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label(class="form-label", **{'data-translate': 'pass'}) }}
+                        {{ form.password(id="password", class="form-control", placeholder="Ingrese la contraseña", size=105) }}
+                        {% for error in form.password.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <!-- <label class="form-label" for="pass" data-translate="pass">Contraseña</label>
+                        <input type="password" id="pass" name="password" class="form-control" placeholder="Ingrese la contraseña" required> -->
+                    </div>
+                    <div class="form-options">
+                        {{ form.remember_me.label(class="remember", **{'data-translate':'remember'}) }}
+                        <!-- <label class="remember" data-translate="remember">
+                            <input type="checkbox" id="remember_me">
+                            Recordarme
+                        </label> -->
+                        <a href="{{url_for('recuperar')}}" id="forgot-pass" class="forgot-link" data-translate="recover_pass">Recuperar contraseña</a>
+                    </div>
+                    <button type="submit" class="send-btn" id="send-btn" data-translate="enter">
+                        {{ ('Ingresar') }}
+                    </button>
+                    <!-- <button type="submit" id="send-btn" class="send-btn" data-translate="enter">Ingresar</button> -->  
+                </form>
+                <p data-translate="dont_account">No tenés una cuenta. <a href="{{url_for('register')}}" class="iniciar-sesion">Registrate ahora!</a></p>
+            </aside>
+            <div class="right-side">
+                <img src="{{url_for('static',filename='imagenes/undraw_access-account_aydp 1.svg')}}" alt="Acceder a la cuenta">
+            </div>
+        </main>
+        <div class="lang-container">
+            <div class="lang">
+                <button type="button" class="language" id="lang-toggle">
+                    <i class='bx  bx-globe-alt'></i>
+                    <span class="text-language">Español</span>
+                    <i id="flecha-idioma" class='bx  bx-chevron-up'></i>
+                </button >
+            </div>
+            <ul class="idiomas hidden">
+                <li class="es" id="es"><a>Español</a></li>
+                <li class="en" id="en"><a>English</a></li>
+            </ul>
+        </div>
+        <script src="{{url_for('static',filename='js/login-register.js')}}"></script>
+        <script src="{{url_for('static',filename='js/translate.js')}}"></script>
+    </body>
+{% endblock%}
+</html>

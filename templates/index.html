@@ -1,0 +1,374 @@
+{% extends "base.html" %}
+
+{% block title %}<title data-translate="title">Gestión de Barrio Privado</title>{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+{% endblock%}
+{% block body %} 
+  <body id="index_page">
+    <div id="mas-info" class="mas-info hidden">
+      <div class="contacto-24hs">
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  <div class="flash-messages">
+                      {% for message in messages %}
+                          <div class="flash-message">{{ message }}</div>
+                      {% endfor %}
+                  </div>
+              {% endif %}
+          {% endwith %}  
+          <h3 data-translate="left_message">Deja tu mensaje y te contactaremos en las siguientes 24hs</h3>
+          <span class="divider"></span>
+          <form id="contact_form_24hs" class="contact" method="post" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.name.label(class="form-label", **{'data-translate': 'your_name'}) }}
+              {{ form.name(id="name", class="form-control", size=105) }}
+              {% for error in form.name.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="name" data-translate="your_name">Tu Nombre</label>
+              <input type="text" id="name" name="name" class="form-control" required> -->
+            </div>
+            <div class="form-group">
+              {{form.phone.label(class="form-label", **{'data-translate': 'phone'}) }}
+              {{ form.phone(id="phone", class="form-control", size=105) }}
+              {% for error in form.phone.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="phone" data-translate="phone">Teléfono</label>
+              <input type="text" id="phone" name="phone" class="form-control" required> -->
+            </div>
+            <div class="form-group">
+              {{form.email.label(class="form-label", **{'data-translate': 'email'}) }}
+              {{ form.email(id="email", class="form-control", size=105) }}
+              {% for error in form.email.errors %}
+                <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="email" data-translate="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" class="form-control" required> -->
+            </div>
+            <div class="form-group">
+              {{form.message.label(class="form-label", **{'data-translate': 'message'}) }}
+              {{ form.message(id="message", class="form-control", rows=4, cols=50) }}
+              {% for error in form.message.errors %}
+                <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="message" data-translate="message">Mensaje</label>
+              <textarea id="message" name="message" class="form-control" ></textarea> -->
+            </div>
+            <button type="submit" class="send-btn" id="send-btn-24hs" data-translate="send">
+              {{ ('Enviar') }}
+            </button>
+            <!-- <button type="submit" id="send-btn" class="send-btn" data-translate="send">Enviar</button> -->  
+          </form>
+        </div>
+    </div>
+    <nav class="nav-center">
+      <h2 class="logo" data-translate="title">Gestión de Barrio Privado</h2>
+      <ul class="nav-links">
+        <li><a href="#beneficios" data-translate="benefit">Beneficios</a></li>
+        <li><a href="#caracteristicas" data-translate="feature">Características</a></li>
+        <li><a href="#planes" data-translate="plans">Planes</a></li>
+        <li><a href="#contacto" data-translate="contact">Contacto</a></li>
+      </ul>
+      <div class="iniciar-sesion" href="">
+        <i class='bx  bx-user'></i> 
+        <a href="{{url_for('login')}}" data-translate="log_in">Iniciar Sesion</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-right">
+        <div class="hero-text">
+          <h1 id="titulo" data-translate="easiest_way">La forma más simple de administrar tu,</h1> 
+          <span id="span_prv" data-translate="Private">Barrio Privado</span>
+          <p>Administra expensas, controla lotes y propietarios, y simplifica la gestión desde un solo lugar.</p>
+        </div>
+        <div class="hero-btns">
+          <a href="{{url_for('demo')}}" id="free-try-btn" class="free-try-btn" data-translate="free_try">Probar gratis</a>
+          <a href="" id="info-btn" class="info-btn" data-translate="more_info">Más info</a>
+        </div>
+      </div>
+      <aside class="hero-img">
+        <img src="{{url_for('static',filename='imagenes/barrio_privado_02.jpg')}}" alt="imagen-hero">
+      </aside>
+    </div>
+    <div class="beneficios">
+      <h2 id="beneficios" class="simple" data-translate="simpler">
+        ¿Por que es más simple?
+      </h2>
+      <div class="beneficios-contenedor">
+        <div class="beneficio">
+        <div class="icono">
+          <i class='bxr  bx-cog'></i> 
+        </div>
+        <p data-translate="benefit1">Porque se reducen las tareas repetitivas y manuales ya que el sistema hace todos los cálculos de liquidación en segundos, 
+          de forma automática y sin necesidad de tu intervención, minimizando errores humanos.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">
+            <i class='bxr  bx-location-pin'></i>  
+          </div>
+          <p data-translate="benefit2">Por que toda la información del barrio se centraliza en un solo lugar, fácil de acceder. 
+            Contando con apartados para agregar, modificar, eliminar o consultar los datos, permitiendo a los propietarios recibir información clara y verificable sobre sus pagos y consumos.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">
+            <i class='bxr  bx-database-alt'></i>  
+          </div>
+          <p data-translate="benefit3">Porque es adaptable a distintos tipos de barrios cerrados, consorcios o clubes de campo, permitiendo gestionar los lotes y propietarios de manera centralizada, controlar consumos y generar expensas de forma automática.</p>
+        </div>
+      </div>
+      <a href="#clientes" class="clientes-btn" data-translate="wh_cust_say">¿Qué dicen nuestros clientes?</a>
+    </div>
+    <div class="caracteristicas">
+    <h2 id="caracteristicas" data-translate="feature">Características</h2>
+    <div class="caracteristicas-contenedor">
+      <div class="caracteristica">
+        <i class='bxr  bx-building-house'></i> 
+        <h3 data-translate="feature1">
+          Gestión de lotes y propietarios
+        </h3>
+        <p data-translate="feat_p">Registro completo de cada lote, con datos del propietario y estado actual.</p>
+      </div>
+      <div class="caracteristica">
+        <i class='bxr  bx-command' ></i>  
+        <h3 data-translate="feature2">
+          Control de consumos
+        </h3>
+        <p data-translate="feat_p2">Carga y seguimiento de consumos de agua, luz y gas para cada unidad.</p>
+      </div>
+      <div class="caracteristica">
+        <i class='bxr  bx-robot'  ></i>  
+        <h3 data-translate="feature3">
+          Liquidaciones automáticas
+        </h3>
+        <p data-translate="feat_p3">Generación de expensas y facturación mensual en base a consumos y cuotas fijas.</p>
+      </div>
+      <div class="caracteristica">
+        <i class='bxr  bx-send' ></i> 
+        <h3 data-translate="feature4">
+          Envío digital
+        </h3>
+        <p data-translate="feat_p4">Posibilidad de exportar o enviar la liquidación directamente por correo electrónico.</p>
+      </div>
+      <div class="caracteristica">
+        <i class='bxr  bx-file-report' ></i>  
+        <h3 data-translate="feature5">
+          Reportes claros
+        </h3>
+        <p data-translate="feat_p5">Visualización de pagos, saldos y resúmenes de cada propietario.</p>
+      </div>
+      <div class="caracteristica">
+        <i class='bxr  bx-globe-stand'></i>  
+        <h3 data-translate="feature6">
+          Multiidioma
+        </h3>
+        <p data-translate="feat_p6">Compatible en español e inglés, gracias a la integración de traducción.</p>
+      </div>
+    </div>
+    </div>
+    <div class="planes">
+    <h2 id="planes" data-translate="plans_title">60 días de garantía o devolución de dinero.</h2>
+    <p data-translate="plans_subtitle">Usá nuestro programa de gestión 60 días y si no cumple tus expectativas,te devolvemos el 100% del pago.</p>
+    <div class="planes-contenedor">
+      <div class="plan">
+        <p class="plan-header">Normal</p>
+        <div>
+          <h4 class="plan-price">$150<span data-translate="per_month">/por mes</span></h4>
+          <p class="plan-text" data-translate="by_neigh">Por barrio</p>
+        </div>
+        <a href="https://wa.me/549113541388368" class="contacto-wh" data-translate="contact_wh">Contactar por Whatsapp</a>
+        <div class="plan-texts">
+          <p class="plan-text" data-translate="lot_manag">Gestión de Lotes</p>
+          <p class="plan-text" data-translate="own_manag">Gestión de Propietarios</p>
+          <p class="plan-waranty" data-translate="war_60day">60 días de garantía</p>
+        </div>
+      </div>
+      <div class="plan">
+        <p class="plan-header">Pro</p>
+        <div>
+          <h4 class="plan-price">$180<span data-translate="per_month">/por mes</span></h4>
+          <p class="plan-text" data-translate="by_neigh">Por barrio</p>
+        </div>
+        <a href="https://wa.me/549113541388368" class="contacto-wh" data-translate="contact_wh">Contactar por Whatsapp</a>
+        <div class="plan-texts">
+          <p class="plan-text" data-translate="idem">Idem anterior</p>
+          <p class="plan-text" data-translate="cons_control">Control de consumos</p>
+          <p class="plan-text" data-translate="cost_control">Control de costos</p>
+          <p class="plan-waranty" data-translate="war_60day">60 días de garantía</p>
+        </div>
+        
+      </div>
+      <div class="plan">
+        <p class="plan-header">Premium</p>
+        <div>
+          <h4 class="plan-price">$250<span data-translate="per_month">/por mes</span></h4>
+          <p class="plan-text" data-translate="by_neigh">Por barrio</p>
+        </div>
+        <a href="https://wa.me/549113541388368" class="contacto-wh" data-translate="contact_wh">Contactar por Whatsapp</a>
+        <div class="plan-texts">
+          <p class="plan-text" data-translate="idem">Idem anterior</p>
+          <p class="plan-text" data-translate="exp_control">Control de Expensas</p>
+          <p class="plan-text" data-translate="pay_manag">Manejo de Pagos</p>
+          <p class="plan-text" data-translate="send_set">Envío de liquidaciones</p>
+          <p class="plan-waranty" data-translate="war_60day">60 días de garantía</p>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="alianzas">
+      <h2 id="alianzas" data-translate="strategic_al">Alianzas Estratégicas</h2>
+      <div>
+        <img src="{{url_for('static',filename='imagenes/Logo_Banco_Macro.svg.png')}}" alt="Logo Banco Macro">
+        <img src="{{url_for('static',filename='imagenes/mercado-pago-logo-vector-2023.png')}}" alt="Logo Mercado Pago">
+        <img src="{{url_for('static',filename='imagenes/logo_franquicia_rapipago.png')}}" alt="Logo Rapipago">
+        <img src="{{url_for('static',filename='imagenes/pago-facil-2019-logo-png_seeklogo-349244.png')}}" alt="Logo Pago Fácil">
+        <img src="{{url_for('static',filename='imagenes/Amazon_Web_Services_Logo.svg.png')}}" alt="Logo Amazon Web Services">
+      </div>
+      <div>
+        <img src="{{url_for('static',filename='imagenes/Meta_Platforms_Inc._logo.svg')}}" alt="Logo Meta Plataforms">
+        <img src="{{url_for('static',filename='imagenes/Dropbox_Logo_01.svg')}}" alt="Logo Dropbox">
+        <img src="{{url_for('static',filename='imagenes/channels4_profile.jpg')}}" alt="Logo ARCA">
+      </div>
+      <div class="alianza-line"></div>
+    </div>
+    <div class="clientes">
+      <!-- title -->
+      <h2 id="clientes" data-translate="wh_cust_say">¿Qué dicen nuestros clientes?</h2>
+      <section class="container-clientes">
+        <!-- review-->
+        <i id="prev-btn" class='bxr  bx-arrow-left-circle prev-btn'></i>
+        <div class="review" >
+          <div class="carrousel-track" id="carrousel-track">
+            <!-- Items creados en JS -->  
+          </div> 
+          <div class="carrousel-indicators" id="carrousel-indicators">
+            <!-- Items creados en JS -->  
+          </div>
+        </div>
+        <i id="next-btn" class='bxr  bx-arrow-right-circle next-btn'></i>  
+      </section>
+      <a href="#contacto" class="contact-btn" data-translate="contact_us">Contáctanos</a>
+    </div>
+    <div class="download">
+      <img src="{{url_for('static',filename='imagenes/landing-download-app.png')}}" alt="Descargar Manual" class="upload-img" >
+      <div class="download-text">
+        <p data-translate="download_manual">Descargá el manual del Programa de Gestión </p>
+        <span data-translate="total_free">Totalmente Gratuito</span>
+        <a href="{{url_for('static',filename='documentos/Programa de Gestión de Barrio Privado.pdf')}}" download="Manual_de_Usuario.pdf"><i class='bxr  bx-archive-arrow-down'></i></a>
+      </div>
+      <img src="{{url_for('static',filename='imagenes/Letter - 1.png')}}" alt="" class="manual-img">
+    </div>
+    <footer class="contacto" id="contacto">
+      <div>
+        <div class="objetivo">
+          <h2 data-translate="proud">Estamos orgullosos de lo que hacemos y nos gustaria ayudarte.</h2>
+          <p data-translate="objetive">Nuestro objetivo es simplificar y modernizar la administración de barrios privados, ofreciendo transparencia y eficiencia tanto para administradores como para vecinos. Somos un pequeño startup que desea crecer ayudando a los administradores a mejorar su gestión con sistemas simples y adaptables.</p>
+          <hr>
+          <ul class="redes">
+            <li>
+              <a href="mailto:arielserranocerbellera@iico.edu.ar"><i class='bxr  bx-envelope-alt'></i> arielserranocerbellera@iico.edu.ar</a>
+            </li>
+            <li>
+              <a href="tel:+54-9-11-3541-388368"><i class='bxr  bx-phone'></i>+54-9-11-3541-388368</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/ariel.serrano07"> <i class='bxl  bx-instagram'></i>/ariel.serrano07</a>
+            </li>
+            <li>
+              <a href="https://x.com/ArielSe58636710"><i class='bxl  bx-twitter'></i> @ArielSe58636710</a>
+            </li>
+            <li>
+              <a href="google.com/maps?sca_esv=229f5e211f1b8dd0&output=search&q=carlos+paz&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQht6_BFq6vBIoFFRK7qchKHDX9TtpZ992kyQpCWcw0WjqCL58OT9xzaJZWNwg8Tb-9wCcCYxcIEp5k3Zc06I5KhrYyMz1ytoq_wE5MaNkVXUYrMSvWCrhRGdaBm3ziW8ZVfLgJ2z7ekzRzjaWRksJZmjdjRf6tYBYebDn8e30pwMZMceqcFv29JLprx-wvVGm0b5rfA&entry=mc&ved=1t:200715&ictx=111">
+                <i class='bx  bx-location'></i> 
+                Villa Carlos Paz, Córdoba, Argentina
+              </a>
+            </li>
+          </ul>
+        </div>
+        <aside>
+        <div class="contacto-footer">
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  <div class="flash-messages">
+                      {% for message in messages %}
+                          <div class="flash-message">{{ message }}</div>
+                      {% endfor %}
+                  </div>
+              {% endif %}
+          {% endwith %}  
+          <h3 data-translate="want_to">¿Queres saber más?</h3>
+          <span class="divider"></span>
+          <form id="contact_form" class="contact" method="post" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.name.label(class="form-label", **{'data-translate': 'your_name'}) }}
+              {{ form.name(id="name", class="form-control", size=105) }}
+              {% for error in form.name.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="name" data-translate="your_name">Tu Nombre</label>
+              <input type="text" id="name" name="name" class="form-control" required> -->
+            </div>
+            <div class="form-group">
+              {{form.phone.label(class="form-label", **{'data-translate': 'phone'}) }}
+              {{ form.phone(id="phone", class="form-control", size=105) }}
+              {% for error in form.phone.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="phone" data-translate="phone">Teléfono</label>
+              <input type="text" id="phone" name="phone" class="form-control" required> -->
+            </div>
+            <div class="form-group">
+              {{form.email.label(class="form-label", **{'data-translate': 'email'}) }}
+              {{ form.email(id="email", class="form-control", size=105) }}
+              {% for error in form.email.errors %}
+                <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="email" data-translate="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" class="form-control" required>  -->
+            </div>
+            <div class="form-group">
+              {{form.message.label(class="form-label", **{'data-translate': 'message'}) }}
+              {{ form.message(id="message", class="form-control", rows=4, cols=50) }}
+              {% for error in form.message.errors %}
+                <span class="error">{{ error }}</span>
+              {% endfor %}
+              <!-- <label class="form-label" for="message" data-translate="message">Mensaje</label>
+              <textarea id="message" name="message" class="form-control" ></textarea> -->
+            </div>
+            <button type="submit" class="send-btn" id="send-btn" data-translate="send">
+              {{ ('Enviar') }}
+            </button>
+           <!--  <button type="submit" id="send-btn" class="send-btn" data-translate="send">Enviar</button> -->  
+          </form>
+        </div>
+        </aside>
+      </div>
+        <div class="lang-container">
+        <ul class="idiomas hidden">
+          <li class="es" id="es"><a>Español</a></li>
+          <li class="en" id="en"><a>English</a></li>
+        </ul>
+        <div class="lang">
+        <button type="button" class="language" id="lang-toggle">
+          <i class='bx  bx-globe-alt'></i>
+          <span class="text-language">Español</span>
+          <i id="flecha-idioma" class='bx  bx-chevron-up'></i>
+        </button >
+      </div>
+        </div>
+      <hr>
+      <small data-translate="copyright">Copyright © 2025 Gestión de Barrio Privado. Reservados todos los derechos.</small>
+    </footer>
+
+    <button id="btnToTop" class="to-top" aria-label="Volver arriba" title="Volver arriba">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12 12 4z"/>
+      </svg>
+    </button>
+    <script src="{{url_for('static',filename='js/app.js')}}"></script>
+    <script src="{{url_for('static',filename='js/translate.js')}}"></script>
+  </body>
+{% endblock%}

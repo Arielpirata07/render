@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Fragment+Mono:ital@0;1&family=Mochiy+Pop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Special+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --clr-primary: #19C9B4;
+    --clr-primary2: #00A878;
+    --clr-secundary: #181C31;
+    --clr-red:#FF5E6E;
+    --ff-primary: "Outfit", sans-serif;
+    --ff-secondary: "Inter", sans-serif;
+    --transition: all 0.3s linear;
+    --spacing: 0.1rem;
+    --radius: 0.25rem;
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --max-width: 1170px;
+    --fixed-width: 620px;
+    --green-shadow: 0 -12px 20px 1px rgba(25,201,180,.6);
+    --blue-shadow: 0px 2px 20px rgba(75, 134, 239, 0.4);
+}
+
+.flash-messages{
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: center;
+    color: white;
+    background: linear-gradient(100deg, #4B86EF, #4d5ded);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 3rem;
+    align-content: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    margin-top: 0 auto;
+}
+.flash-message{
+    color: rgb(255, 255, 255);
+}

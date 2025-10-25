@@ -1,0 +1,72 @@
+.iniciar-sesion-title{
+  font-size: 1.875rem;
+
+}
+/* ==== ÁREAS DE GRID ==== */
+#contact_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "email email"
+    "password password"
+    "options options"
+    "button button";
+  gap: 1.5rem;
+  width: 100%;
+  margin: .5rem auto;
+}
+
+/* ==== ÁREAS DE GRID ==== */
+.form-email {
+  grid-area: email;
+}
+.form-group:nth-of-type(2) {
+  grid-area: password;
+}
+.form-group:nth-of-type(3) {
+  grid-area: conf_pass;
+}
+.form-group:nth-of-type(4) {
+  grid-area: name;
+}
+.form-group:nth-of-type(5) {
+  grid-area: last_name;
+}
+#send-btn {
+  margin-top: 0rem;
+  grid-area: button;
+  justify-self: center;
+}
+.form-options {
+  grid-area: options;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.remember {
+  color: #FCFCFC;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.remember input[type="checkbox"] {
+  accent-color: #19C9B4; /* color moderno del check */
+  width: 16px;
+  height: 16px;
+  
+}
+
+.forgot-link {
+  color: #19C9B4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  color: #12b09f;
+  text-decoration: underline;
+}
