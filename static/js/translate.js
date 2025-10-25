@@ -197,7 +197,7 @@ const translations = {
   }
 };
 
-let currentLang = "es";
+let currentLang = "en";
 
 // Aplicar traducción
 function applyTranslations(lang) {
@@ -255,6 +255,8 @@ function idioma_btn(lang){
     textLang.textContent = currentLang === "es" ? "Español" : "English";
     // 4️.Guardar preferencia en el almacenamiento local
     localStorage.setItem("lang", currentLang);
+    // Notificar a otros scripts que el idioma cambió
+    window.dispatchEvent(new CustomEvent("languageChange", { detail: { lang: currentLang } }));
 }
 en_btn.addEventListener("click", () => idioma_btn("en"));
 es_btn.addEventListener("click", () => idioma_btn("es"));

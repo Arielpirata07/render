@@ -14,11 +14,52 @@ window.addEventListener("click", (e) => {
 });
 ////// CARROUSEL ///////
 const elementos = [
-  { id: 1, name: "soldier", contenido: "SACRED WARRIOR" },
-  { id: 2, name: "Rogue", contenido: "STEALTH ASSASSIN" },
-  { id: 3, name: "Mage", contenido: "GRAND MAGNUS" },
-  { id: 4, name: "Alberto", contenido: "Señor José" }
+  {
+    id: 1,
+    name: {
+      es: "Martín G., Administrador de ‘Los Álamos’",
+      en: "Martín G., Manager of ‘Los Álamos’"
+    },
+    contenido: {
+      es: "Desde que usamos este sistema, la gestión del barrio se volvió muchísimo más ordenada. Puedo ver los pagos, propietarios y reclamos en un solo lugar. ¡Fácil de usar y muy práctico!",
+      en: "Since we started using this system, neighborhood management has become much more organized. I can see payments, owners, and requests all in one place. Easy to use and very practical!"
+    }
+  },
+  {
+    id: 2,
+    name: {
+      es: "Laura P., Propietaria del lote 32",
+      en: "Laura P., Lot 32 Owner"
+    },
+    contenido: {
+      es: "Antes dependíamos de planillas y mensajes por WhatsApp. Ahora con el sistema todo está centralizado, puedo consultar mi saldo o liquidaciones sin molestar a nadie.",
+      en: "Before, we relied on spreadsheets and WhatsApp messages. Now everything is centralized, and I can check my balance or settlements without bothering anyone."
+    }
+  },
+  {
+    id: 3,
+    name: {
+      es: "Carlos D., Encargado de mantenimiento",
+      en: "Carlos D., Maintenance Manager"
+    },
+    contenido: {
+      es: "Nos facilita muchísimo el trabajo. Las órdenes de mantenimiento llegan rápido y sabemos exactamente qué tareas están pendientes. Es intuitivo y ahorra tiempo.",
+      en: "It makes our work much easier. Maintenance requests arrive quickly, and we know exactly what tasks are pending. Intuitive and time-saving."
+    }
+  },
+  {
+    id: 4,
+    name: {
+      es: "Andrea R., Directora de Administración Sur",
+      en: "Andrea R., Director of South Management"
+    },
+    contenido: {
+      es: "Probamos varios programas, pero este fue el único que se adaptó perfectamente a distintos barrios sin complicaciones técnicas. Además, el soporte siempre responde rápido.",
+      en: "We tested several programs, but this was the only one that adapted perfectly to different neighborhoods without technical issues. Plus, support always responds quickly."
+    }
+  }
 ];
+
 // seleccionar etiquetas
 const track = document.getElementById("carrousel-track");
 const prevBtn = document.querySelector(".prev-btn");
@@ -26,20 +67,36 @@ const nextBtn = document.querySelector(".next-btn");
 const indicatorsContainer = document.getElementById("carrousel-indicators");
 
 let currentItem = 0;
-
+let currentLanguage = document.documentElement.lang || "es";
+console.log("Idioma actual del carrusel:", currentLanguage);
 // generar los elementos del carrusel
-elementos.forEach((el) => {
-  const div = document.createElement("div");
-  div.classList.add("carousel-item");
-  div.innerHTML = `
-    <i class='bx bxs-quote-left'></i>      
-    <p class="info-cliente">${el.contenido}</p>
-    <p class="nombre-cliente">${el.name}</p>
-    <i class='bx bxs-quote-right'></i>
-  `;
-  track.appendChild(div);
-});
+function renderCarousel() {
+  track.innerHTML = ""; // limpiar
+  elementos.forEach((el, index) => {
+    const div = document.createElement("div");
+    div.classList.add("carousel-item");
+    if (index === currentItem) div.classList.add("active");
+    div.innerHTML = `
+      <i class='bx bxs-quote-left'></i>      
+      <p class="info-cliente">${el.contenido[currentLanguage]}</p>
+      <p class="nombre-cliente">${el.name[currentLanguage]}</p>
+      <i class='bx bxs-quote-right'></i>
+    `;
+    track.appendChild(div);
+  });
+}
+renderCarousel();
 
+// actualizar traducción cuando cambia idioma
+function updateCarouselLang() {
+  renderCarousel();
+}
+
+// integrar con tu sistema de traducción
+window.addEventListener("languageChange", (event) => {
+  currentLanguage = event.detail.lang;
+  renderCarousel();
+});
 // generar los indicadores
 elementos.forEach((_, index) => {
   const indicator = document.createElement("button");
